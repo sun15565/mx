@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互式卡片组件</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            padding: 20px;
+            transition: background 0.5s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #232526, #414345);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .theme-switch-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .theme-switch-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark-mode .card {
+            background: rgba(35, 40, 48, 0.9);
+            color: #f0f0f0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        body.dark-mode .card-title {
+            color: #f0f0f0;
+        }
+
+        .card-text {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .card-text {
+            color: #ccc;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #6e8efb;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background: #5a7dfa;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="theme-switch">
+        <button class="theme-switch-btn" id="themeSwitch">
+            <span>暗色模式</span>
+            <i>🌙</i>
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>交互式卡片组件</h1>
+            <p>悬停查看效果，点击按钮切换主题</p>
+        </div>
+
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="科技" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">科技创新</h3>
+                    <p class="card-text">探索最新科技趋势，了解人工智能、区块链、物联网等前沿技术的发展与应用。</p>
+                    <a href="#" class="card-btn">了解更多</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="自然" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">自然风光</h3>
+                    <p class="card-text">欣赏世界各地的自然美景，从雄伟的山脉到宁静的海滩，感受大自然的魅力。</p>
+                    <a href="#" class="card-btn">了解更多</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="设计" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">现代设计</h3>
+                    <p class="card-text">探索现代设计理念，了解如何将美学与功能性结合，创造出令人惊叹的作品。</p>
+                    <a href="#" class="card-btn">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2023 交互式卡片组件 - 所有权利保留</p>
+    </div>
+
+    <script>
+        // 主题切换功能
+        const themeSwitchBtn = document.getElementById('themeSwitch');
+        const body = document.body;
+        const themeIcon = themeSwitchBtn.querySelector('i');
+        const themeText = themeSwitchBtn.querySelector('span');
+
+        // 检查本地存储中的主题偏好
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeText.textContent = '亮色模式';
+            themeIcon.textContent = '☀️';
+        }
+
+        themeSwitchBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeText.textContent = '亮色模式';
+                themeIcon.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeText.textContent = '暗色模式';
+                themeIcon.textContent = '🌙';
+            }
+        });
+
+        // 卡片交互效果
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            // 添加点击效果
+            card.addEventListener('click', function () {
+                this.classList.toggle('active');
+            });
+
+            // 添加鼠标进入/离开时的动画
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.2)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
